@@ -82,6 +82,35 @@ async function loadFonts() {
 }
 
 /**
+ * to add/remove a template, just add/remove it in the list below
+ */
+const TEMPLATE_LIST = [
+  'lesson',
+  'hightlight',
+];
+
+/**
+ * Run template specific decoration code.
+ * @param {Element} main The container element
+ */
+async function decorateTemplates(main) {
+  try {
+    const template = getMetadata('template');
+    const templates = TEMPLATE_LIST;
+    if (templates.includes(template)) {
+      const mod = await import(`../templates/${template}/${template}.js`);
+      loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`);
+      if (mod.default) {
+        await mod.default(main);
+      }
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Auto Blocking failed', error);
+  }
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
@@ -123,33 +152,6 @@ export function shouldBeDisplayed(date) {
     return now >= from;
   }
   return false;
-}
-
-/**
- * to add/remove a template, just add/remove it in the list below
- */
-const TEMPLATE_LIST = [
-];
-
-/**
- * Run template specific decoration code.
- * @param {Element} main The container element
- */
-async function decorateTemplates(main) {
-  try {
-    const template = getMetadata('template');
-    const templates = TEMPLATE_LIST;
-    if (templates.includes(template)) {
-      const mod = await import(`../templates/${template}/${template}.js`);
-      loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`);
-      if (mod.default) {
-        await mod.default(main);
-      }
-    }
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Auto Blocking failed', error);
-  }
 }
 
 // eslint-disable-next-line no-unused-vars
