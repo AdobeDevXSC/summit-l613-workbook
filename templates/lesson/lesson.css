@@ -72,9 +72,15 @@
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    width: 100%;
+    /* width: 100%; */
     padding: 42px 29px;
     height: fit-content;
+    width: 240px;
+  }
+
+  .lesson .sidebar .navigation.stuck {
+    position: fixed;
+    top:28px;
   }
   
   .lesson .sidebar .content {
