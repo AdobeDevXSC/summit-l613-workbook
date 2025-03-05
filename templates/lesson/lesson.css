@@ -1,0 +1,106 @@
+.lesson .nav-brand img {
+  width: 45px;
+}
+
+.lesson main {
+  background-color: transparent;
+}
+
+.lesson main .hero h1 {
+  font-family: var(--body-font-family);
+  box-sizing: border-box;
+  margin: 0;
+  scroll-margin: calc(var(--nav-height) + 1em);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  font-size: var(--type-heading-xxl-size);
+  line-height: 55px;
+  margin-top: 0;
+  margin-left: var(--spacing-ml);
+  position:absolute;
+  right: 20px;
+  bottom: 10px;
+  text-shadow: 1px 1px #558ABB;
+  border: .5px #000;
+}
+
+.lesson main .hero h2 {
+  color:var(--color-white);
+  font-family: var(--body-font-family);
+  box-sizing: border-box;
+  margin: 0;
+  font-size: var(--type-heading-l-size);
+  line-height: var(--type-heading-xl-lh);
+  margin-left: var(--spacing-ml);
+  font-weight: 700;
+  letter-spacing: 0;
+  margin-top: 0;
+}
+
+.lesson main .hero {
+  height: 393px;
+}
+
+.lesson .sidebar .content img {
+  max-width: 700px;
+  height: 100%;
+}
+
+.lesson .sidebar .navigation {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .lesson .sidebar > div{
+    display: grid;
+    grid-template-columns: 20% auto;
+    grid-template-areas:
+      'navigation content';
+    margin: auto;
+    grid-column-gap: 46px;
+  }
+  
+  .lesson .sidebar .navigation {
+    display: block;
+    grid-area: navigation;
+    background-color: #F8F8F8;
+    border: 1px solid rgb(211, 211, 211);
+    border-radius: 16px;
+    max-width: var(--grid-desktop-container-width);
+    margin-top: 45px;
+    font-family: adobe-clean-light, "Trebuchet MS", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    /* width: 100%; */
+    padding: 42px 29px;
+    height: fit-content;
+    width: 240px;
+  }
+
+  .lesson .sidebar .navigation.stuck {
+    position: fixed;
+    top:28px;
+  }
+  
+  .lesson .sidebar .content {
+    grid-area: content;
+    width: auto;
+    margin: 0 50px;
+  }
+  .lesson .sidebar .navigation ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .lesson .sidebar .navigation li:not(.sub-item) {
+    font-size: larger;
+  }
+
+  .lesson .sidebar .navigation li .sub-item {
+    padding-left: 9px;
+    padding-top: unset;
+    font-size: smaller;
+  }
+
+}
