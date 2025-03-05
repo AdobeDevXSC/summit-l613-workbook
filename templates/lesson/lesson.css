@@ -92,5 +92,15 @@
     list-style: none;
     padding-left: 0;
   }
-  
+
+  .lesson .sidebar .navigation li:not(.sub-item) {
+    font-size: larger;
+  }
+
+  .lesson .sidebar .navigation li .sub-item {
+    padding-left: 9px;
+    padding-top: unset;
+    font-size: smaller;
+  }
+
 }

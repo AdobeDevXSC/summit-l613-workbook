@@ -13,9 +13,10 @@ export default async function decorate(block) {
   });
 
   const ul = document.createElement('ul');
-  [...content.querySelectorAll('h3')].forEach((section) => {
+  [...content.querySelectorAll('h3, h2')].forEach((section) => {
     const li = document.createElement('li');
-    li.innerHTML = `<a href='#${section.getAttribute('id')}'>${section.textContent}</a>`;
+    if(section.nodeName === 'H2') li.innerHTML = `<a href='#${section.getAttribute('id')}'>${section.textContent}</a>`;
+    else li.innerHTML = `<span class='sub-item'><a href='#${section.getAttribute('id')}'>${section.textContent}</a></span>`;
     ul.append(li);
   });
 
