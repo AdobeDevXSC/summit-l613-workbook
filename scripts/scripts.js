@@ -110,6 +110,42 @@ async function decorateTemplates(main) {
   }
 }
 
+export async function fetchEnvs() {
+  const env = 'environments.json';
+  const response = await fetch(env);
+  const res = await response.json();
+  if (!res.ok) console.error('Failed to fetch environments.');
+  return res;
+}
+
+export function addQuickLinks(sidebar, envObj) {
+  sidebar.innerHTML += '<strong>Quick Links</strong>';
+  const quickUl = document.createElement('ul');
+  const aemUrl = document.createElement('li');
+  aemUrl.innerHTML = `<a href=${envObj['AEM URL']} target='_blank'>Author Environment</a>`;
+  const aemDomain = envObj['AEM URL'].replace('https://', '');
+  const aemUe = `${envObj['AEM URL']}/ui#/@aemxscsandbox5/aem/universal-editor/canvas/${aemDomain}/content/citisignal/us/en/rural-coverage.html`
+  const ueUrl = document.createElement('li');
+  ueUrl.innerHTML = `<a href=${aemUe} target='_blank'>Rural Coverage Page</a>`;
+  quickUl.append(aemUrl);
+  quickUl.append(ueUrl);
+  sidebar.append(quickUl);
+
+  sidebar.innerHTML += '<strong>Reference Values</strong>';
+  const refUl = document.createElement('ul');
+
+  refUl.innerHTML = `<li><strong>Email:</strong>${envObj.User}</strong>`;
+  refUl.innerHTML += '<li><strong>Password:</strong> Adobe4Summit!</li>';
+  sidebar.append(refUl);
+}
+
+function openNewLink(main) {
+  main.querySelectorAll('a').forEach((item) => {
+    item.href.includes('target=_blank');
+    item.setAttribute('target', '_blank');
+  })
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -117,6 +153,7 @@ async function decorateTemplates(main) {
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
+    openNewLink(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

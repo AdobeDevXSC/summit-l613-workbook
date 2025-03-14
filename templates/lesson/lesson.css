@@ -50,6 +50,14 @@
   display: none;
 }
 
+.lesson .sidebar .navigation > ul > li {
+  font-size: small;
+}
+
+.lesson .sidebar .navigation > strong {
+  font-size: large;
+}
+
 @media (min-width: 1024px) {
   .lesson .sidebar > div{
     display: grid;
@@ -93,9 +101,9 @@
     padding-left: 0;
   }
 
-  .lesson .sidebar .navigation li:not(.sub-item) {
+  /* .lesson .sidebar .navigation li:not(.sub-item) {
     font-size: larger;
-  }
+  } */
 
   .lesson .sidebar .navigation li .sub-item {
     padding-left: 9px;
