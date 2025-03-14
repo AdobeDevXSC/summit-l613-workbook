@@ -1,5 +1,6 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import { fetchEnvs, addQuickLinks } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -214,4 +215,21 @@ export default async function decorate(block) {
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     navWrapper.append(await buildBreadcrumbs());
   }
+
+  const tools = document.querySelector('.nav-tools');
+  const envs = await fetchEnvs();
+  const toolsSelect = document.createElement('select');
+  toolsSelect.setAttribute('name', 'tools-select');
+  toolsSelect.setAttribute('id', 'tools-select');
+  toolsSelect.innerHTML = `<option value=''></option>`;
+  envs.data.forEach((item, i) => {
+    toolsSelect.innerHTML += `<option value=${i}>${item.Seat}</option>`;
+  });
+
+  toolsSelect.addEventListener('change', function(e) {
+    sessionStorage.setItem('env', JSON.stringify(envs.data[e.target.value]));
+    const bar = document.querySelector('.navigation');
+    addQuickLinks(bar, envs.data[e.target.value]);
+  });
+  tools.appendChild(toolsSelect);
 }
