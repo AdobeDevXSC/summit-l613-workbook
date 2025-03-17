@@ -50,12 +50,17 @@
   display: none;
 }
 
+.lesson .sidebar .navigation a {
+  font-size: 16px;
+}
+
 .lesson .sidebar .navigation > ul > li {
   font-size: small;
 }
 
+.lesson .sidebar .navigation .container > strong,
 .lesson .sidebar .navigation > strong {
-  font-size: large;
+  font-size: 24px;
 }
 
 @media (min-width: 1024px) {
