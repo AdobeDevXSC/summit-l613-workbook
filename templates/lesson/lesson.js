@@ -26,8 +26,12 @@ export default async function decorate(block) {
 
   const bar = document.createElement('div');
   bar.classList.add('navigation');
-  bar.innerHTML = '<strong>Sections</strong>';
-  bar.append(ul);
+
+  const container = document.createElement('div')
+  container.classList.add('container');
+  container.innerHTML = '<strong>Sections</strong>'
+  container.append(ul);
+  bar.append(container);
 
   if (envObj) {
     bar.innerHTML += '<strong>Quick Links</strong>';

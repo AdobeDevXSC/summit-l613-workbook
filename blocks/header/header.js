@@ -221,11 +221,11 @@ export default async function decorate(block) {
   const toolsSelect = document.createElement('select');
   toolsSelect.setAttribute('name', 'tools-select');
   toolsSelect.setAttribute('id', 'tools-select');
-  toolsSelect.innerHTML = `<option value=''></option>`;
+  toolsSelect.innerHTML = `<option value='' disabled selected>Seat</option>`;
   envs.data.forEach((item, i) => {
     toolsSelect.innerHTML += `<option value=${i}>${item.Seat}</option>`;
   });
-
+  
   toolsSelect.addEventListener('change', function(e) {
     sessionStorage.setItem('env', JSON.stringify(envs.data[e.target.value]));
     const bar = document.querySelector('.navigation');

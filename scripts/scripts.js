@@ -119,6 +119,15 @@ export async function fetchEnvs() {
 }
 
 export function addQuickLinks(sidebar, envObj) {
+  // Clear out any child element of sidebar that does not have class 'container'
+  const children = Array.from(sidebar.children);
+  children.forEach(child => {
+    if (!child.classList.contains('container')) {
+      sidebar.removeChild(child);
+    }
+  });
+
+  // Add "Quick Links" section
   sidebar.innerHTML += '<strong>Quick Links</strong>';
   const quickUl = document.createElement('ul');
   const aemUrl = document.createElement('li');
@@ -131,10 +140,11 @@ export function addQuickLinks(sidebar, envObj) {
   quickUl.append(ueUrl);
   sidebar.append(quickUl);
 
+  // Add "Reference Values" section
   sidebar.innerHTML += '<strong>Reference Values</strong>';
   const refUl = document.createElement('ul');
 
-  refUl.innerHTML = `<li><strong>Email:</strong>${envObj.User}</strong>`;
+  refUl.innerHTML = `<li><strong>Email:</strong>${envObj.User}</li>`;
   refUl.innerHTML += '<li><strong>Password:</strong> Adobe4Summit!</li>';
   sidebar.append(refUl);
 }
