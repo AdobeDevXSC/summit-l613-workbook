@@ -113,8 +113,8 @@ async function decorateTemplates(main) {
 export async function fetchEnvs() {
   const env = 'environments.json';
   const response = await fetch(env);
+  if (!response.ok) console.error('Failed to fetch environments.');
   const res = await response.json();
-  if (!res.ok) console.error('Failed to fetch environments.');
   return res;
 }
 
